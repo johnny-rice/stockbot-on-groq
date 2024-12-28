@@ -6,7 +6,8 @@ export function MarketTrending({}) {
   const container = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!container.current) return
+    const containerElement = container.current
+    if (!containerElement) return
 
     const script = document.createElement('script')
     script.src =
@@ -36,11 +37,11 @@ export function MarketTrending({}) {
       symbolActiveColor: 'rgba(60, 120, 216, 0.12)'
     })
 
-    container.current.appendChild(script)
+    containerElement.appendChild(script)
 
     return () => {
-      if (container.current) {
-        container.current.removeChild(script)
+      if (containerElement) {
+        containerElement.removeChild(script)
       }
     }
   }, [])

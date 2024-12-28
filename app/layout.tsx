@@ -13,8 +13,8 @@ export const metadata = {
     ? new URL(`https://${process.env.VERCEL_URL}`)
     : undefined,
   title: {
-    default: 'StockBot powered by Groq',
-    template: `%s - StockBot powered by Groq`
+    default: 'StockBot 2025',
+    template: `%s - StockBot 2025`
   },
   description:
     'Lightning Fast AI Chatbot that Responds With Live Interactive Stock Charts, Financials, News, Screeners, and More.',

@@ -2,13 +2,13 @@
 
 import * as React from 'react'
 import { useRef, useEffect } from 'react'
-import Script from 'next/script'
 
 export function TickerTape() {
   const container = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!container.current) return
+    const containerElement = container.current
+    if (!containerElement) return
 
     const script = document.createElement('script')
     script.src =
@@ -20,14 +20,7 @@ export function TickerTape() {
           proName: 'FOREXCOM:SPXUSD',
           title: 'S&P 500 Index'
         },
-        {
-          proName: 'FOREXCOM:NSXUSD',
-          title: 'US 100 Cash CFD'
-        },
-        {
-          proName: 'FX_IDC:EURUSD',
-          title: 'EUR to USD'
-        },
+      
         {
           proName: 'BITSTAMP:BTCUSD',
           title: 'Bitcoin'
@@ -48,14 +41,12 @@ export function TickerTape() {
       locale: 'en'
     })
 
-    container.current.appendChild(script)
+    containerElement.appendChild(script)
 
     return () => {
-      if (container.current) {
-        const scriptElement = container.current.querySelector('script')
-        if (scriptElement) {
-          container.current.removeChild(scriptElement)
-        }
+      const scriptElement = containerElement.querySelector('script')
+      if (scriptElement) {
+        containerElement.removeChild(scriptElement)
       }
     }
   }, [])

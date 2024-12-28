@@ -11,10 +11,11 @@ export function StockChart({ symbol, comparisonSymbols }: { symbol: string, comp
   const container = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!container.current) return
+    const containerElement = container.current
+    if (!containerElement) return
+    
     const script = document.createElement('script')
-    script.src =
-      'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js'
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js'
     script.type = 'text/javascript'
     script.async = true
     script.innerHTML = JSON.stringify({
@@ -37,11 +38,11 @@ export function StockChart({ symbol, comparisonSymbols }: { symbol: string, comp
       support_host: 'https://www.tradingview.com'
     })
 
-    container.current.appendChild(script)
+    containerElement.appendChild(script)
 
     return () => {
-      if (container.current) {
-        container.current.removeChild(script)
+      if (containerElement) {
+        containerElement.removeChild(script)
       }
     }
   }, [symbol, comparisonSymbols])

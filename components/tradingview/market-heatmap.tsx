@@ -6,7 +6,8 @@ export function MarketHeatmap({}) {
   const container = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!container.current) return
+    const containerElement = container.current
+    if (!containerElement) return
 
     const script = document.createElement('script')
     script.src =
@@ -31,11 +32,11 @@ export function MarketHeatmap({}) {
       height: '100%'
     })
 
-    container.current.appendChild(script)
+    containerElement.appendChild(script)
 
     return () => {
-      if (container.current) {
-        container.current.removeChild(script)
+      if (containerElement) {
+        containerElement.removeChild(script)
       }
     }
   }, [])
